@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: green-lithium
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn backend.wsgi:application
+    runtime: python
+    pythonVersion: 3.12.4
