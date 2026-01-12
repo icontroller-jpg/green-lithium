@@ -1,0 +1,143 @@
+/* Container */
+.sellers-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  text-align: center;
+}
+
+.sellers-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #1e3a8a; /* Indigo-800 */
+}
+
+.sellers-subtitle {
+  color: #64748b; /* Slate-500 */
+  margin-bottom: 2.5rem;
+  font-size: 1.125rem;
+}
+
+.loading-text {
+  color: #2563eb; /* Blue-600 */
+}
+
+.error-text {
+  color: #dc2626; /* Red-600 */
+}
+
+/* Grid layout */
+.sellers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+  padding: 0 0.5rem;
+}
+
+/* Card styling */
+.seller-card {
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seller-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Avatar circle */
+.seller-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #4f46e5; /* Indigo-600 */
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Company name */
+.seller-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #3730a3; /* Indigo-700 */
+  text-align: center;
+}
+
+/* Tagline */
+.seller-tagline {
+  font-size: 0.875rem;
+  color: #475569; /* Slate-600 */
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+/* ===== Responsive adjustments ===== */
+
+/* Small devices (phones) */
+@media (max-width: 640px) {
+  .sellers-container {
+    padding: 3rem 1rem;
+  }
+
+  .sellers-title {
+    font-size: 2rem;
+  }
+
+  .sellers-subtitle {
+    font-size: 1rem;
+  }
+
+  .seller-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .seller-name {
+    font-size: 1.1rem;
+  }
+
+  .seller-tagline {
+    font-size: 0.75rem;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .sellers-container {
+    padding: 4rem 1.5rem;
+  }
+
+  .sellers-title {
+    font-size: 2.25rem;
+  }
+
+  .seller-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
+  }
+
+  .seller-name {
+    font-size: 1.2rem;
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 1025px) {
+  .sellers-container {
+    padding: 5rem 1.5rem;
+  }
+}

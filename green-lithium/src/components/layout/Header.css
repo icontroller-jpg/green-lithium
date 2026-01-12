@@ -1,0 +1,152 @@
+/* ------------------ */
+/* Base Header        */
+/* ------------------ */
+
+.header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 3px solid #eaeaea;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+/* ------------------ */
+/* Logo               */
+/* ------------------ */
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1f7a4d;
+  text-decoration: none;
+  justify-self: center;
+}
+
+/* ------------------ */
+/* Desktop Navigation */
+/* ------------------ */
+
+.desktop-nav {
+  display: flex;
+  gap: 24px;
+  justify-self: end;
+}
+
+.desktop-nav a {
+  font-size: 0.9rem;
+  color: #444;
+  text-decoration: none;
+}
+
+.desktop-nav a:hover {
+  color: #1f7a4d;
+}
+
+/* ------------------ */
+/* Hamburger Button   */
+/* ------------------ */
+
+.hamburger {
+  display: none;
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  justify-self: start;
+}
+
+/* ------------------ */
+/* Side Navigation    */
+/* ------------------ */
+
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+  padding: 24px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.side-nav.open {
+  left: 0;
+}
+
+.close-btn {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.side-links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.side-links a {
+  font-size: 1rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.side-links a:hover {
+  color: #1f7a4d;
+}
+
+/* ------------------ */
+/* Overlay            */
+/* ------------------ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 900;
+}
+
+/* ------------------ */
+/* Mobile Styles      */
+/* ------------------ */
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .logo {
+    justify-self: center;
+  }
+}
+
+/* ------------------ */
+/* Desktop Styles     */
+/* ------------------ */
+
+@media (min-width: 769px) {
+  .hamburger {
+    display: none;
+  }
+
+  .desktop-nav {
+    display: flex;
+  }
+}
