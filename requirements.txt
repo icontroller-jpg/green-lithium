@@ -1,4 +1,21 @@
+# Core
 Django~=5.0.14
-pip~=25.1.1
+
+# REST framework
 djangorestframework~=3.16.1
-djangorestframework_simplejwt~=5.5.1
+djangorestframework-simplejwt~=5.5.1
+
+# Image handling (for ImageField / uploads)
+Pillow~=10.2.0
+
+# CORS (if frontend is separate – React/Vite)
+django-cors-headers~=4.3.1
+
+# Environment variables
+python-dotenv~=1.0.1
+
+# Database URL parsing (optional but useful)
+dj-database-url~=2.1.0
+
+# Production server (optional, safe to include)
+gunicorn~=21.2.0
