@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: "/", // ensure assets are loaded correctly
   build: {
-    outDir: "dist", // default, just to be explicit
+    outDir: "public", // default, just to be explicit
   },
   server: {
     proxy: {
