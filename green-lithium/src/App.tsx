@@ -1,20 +1,24 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"; // ✅ added Navigate
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
+import Header from "./components/layout/Header.js";
+import Footer from "./components/layout/Footer.js";
 
-import Home from "./pages/Home";
-import Marketplace from "./pages/Marketplace";
-import Sellers from "./pages/Sellers";
-import Sustainability from "./pages/Sustainability";
-import Pricing from "./pages/Pricing";
-import SellerProfile from "./pages/SellerProfile";
-import SellerLogin from "./pages/SellerLogin/SellerLogin";
-import SellerSignup from "./pages/SellerSignup/SellerSignup";
-import SellerDashboard from "./pages/SellerDashboard/SellerDashboard";
+import Home from "./pages/Home.js";
+import Marketplace from "./pages/Marketplace.js";
+import Sellers from "./pages/Sellers.js";
+import Sustainability from "./pages/Sustainability.js";
+import Pricing from "./pages/Pricing.js";
+import SellerProfile from "./pages/SellerProfile.js";
+import SellerLogin from "./pages/SellerLogin/SellerLogin.js";
+import SellerSignup from "./pages/SellerSignup/SellerSignup.js";
+import SellerDashboard from "./pages/SellerDashboard/SellerDashboard.js";
 
-// ProtectedRoute ensures only logged-in sellers can access dashboard
-function ProtectedRoute({ children }: { children: JSX.Element }) {
+interface ProtectedRouteProps {
+  children: React.JSX.Element;
+}
+
+export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const token = localStorage.getItem("access_token");
+
   return token ? children : <Navigate to="/seller/login" replace />;
 }
 

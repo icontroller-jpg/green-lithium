@@ -1,5 +1,6 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import "./SellerSignup.css";
+// Correct way
+import { useState } from "react";        // regular import for runtime functions
+import type { ChangeEvent, FormEvent } from "react";  // type-only import
 
 interface SellerSignupForm {
   username: string;

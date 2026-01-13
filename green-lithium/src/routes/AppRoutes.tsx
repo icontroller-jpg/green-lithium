@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Marketplace from "../pages/Marketplace";
-import Sellers from "../pages/Sellers";
-import Sustainability from "../pages/Sustainability";
-import Pricing from "../pages/Pricing";
-import SellerLogin from "../pages/SellerLogin/SellerLogin";
-import SellerSignup from "../pages/SellerSignup/SellerSignup";
-import SellerDashboard from "../pages/SellerDashboard/SellerDashboard";
+import Home from "../pages/Home.js";
+import Marketplace from "../pages/Marketplace.js";
+import Sellers from "../pages/Sellers.js";
+import Sustainability from "../pages/Sustainability.js";
+import Pricing from "../pages/Pricing.js";
+import SellerLogin from "../pages/SellerLogin/SellerLogin.js";
+import SellerSignup from "../pages/SellerSignup/SellerSignup.js";
+import SellerDashboard from "../pages/SellerDashboard/SellerDashboard.js";
 
 
 export default function AppRoutes() {

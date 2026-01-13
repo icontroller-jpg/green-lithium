@@ -1,0 +1,4 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+export default function ProductCard() {
+    return (_jsxs("div", { className: "bg-white rounded-xl shadow p-5 hover:shadow-lg transition", children: [_jsxs("div", { className: "flex gap-2 mb-3", children: [_jsx("span", { className: "text-xs bg-green-100 text-green-700 px-2 py-1 rounded", children: "Verified" }), _jsx("span", { className: "text-xs bg-accent text-black px-2 py-1 rounded", children: "Low CO\u2082" })] }), _jsx("h3", { className: "font-semibold text-lg", children: "LFP Battery 280Ah" }), _jsx("p", { className: "text-sm text-gray-500", children: "China \u2022 CATL Partner" }), _jsx("p", { className: "mt-2 text-sm", children: "CO\u2082: 42 kg/kWh" }), _jsx("button", { className: "mt-4 w-full bg-primary text-white py-2 rounded", children: "Request Quote" })] }));
+}

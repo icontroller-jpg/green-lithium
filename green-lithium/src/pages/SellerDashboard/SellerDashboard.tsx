@@ -1,5 +1,6 @@
-import {  useState, ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // ✅ correct
+import { useState } from "react";        // regular import for runtime functions
+import type { ChangeEvent, FormEvent } from "react";  // type-only import
 import "./SellerDashboard.css";
 
 type Product = {
