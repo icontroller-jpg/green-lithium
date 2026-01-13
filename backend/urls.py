@@ -1,15 +1,10 @@
 from django.contrib import admin
-from django.http import JsonResponse
 from django.urls import path, include
-
-def home(request):
-    return JsonResponse({
-        "status": "ok",
-        "service": "green-lithium backend"
-    })
+from django.shortcuts import redirect
 
 urlpatterns = [
-    path("", home),              # 👈 add this
-    path("admin/", admin.site.urls),
+    path("", lambda r: redirect("/admin/")),
+    path("admin/", admin.site.urls),   # ✅ REQUIRED
     path("api/seller/", include("sellers.urls")),
+
 ]
