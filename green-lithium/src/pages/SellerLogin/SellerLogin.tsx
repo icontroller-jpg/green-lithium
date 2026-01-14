@@ -1,54 +1,49 @@
 import { useState } from "react";
+import type { FormEvent, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "../../services/api";
 import "./SellerLogin.css";
 
 export default function SellerLogin() {
-  const [identifier, setIdentifier] = useState(""); // Email or username
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [identifier, setIdentifier] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/seller/login/", {
+      const response = await apiFetch("/api/seller/login/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email_or_username: identifier, // ✅ matches DRF serializer
+          email_or_username: identifier,
           password,
         }),
       });
 
       const data = await response.json();
-      console.log("Login response:", data); // useful for debugging
 
       if (!response.ok) {
-        // Flatten backend errors
-        let errorMsg = "";
-        if (typeof data === "object") {
-          errorMsg = Object.values(data)
-            .flat()
-            .join(" ");
-        } else {
-          errorMsg = "Login failed.";
-        }
-        setError(errorMsg);
+        const message =
+          typeof data === "object"
+            ? Object.values(data).flat().join(" ")
+            : "Login failed";
+        setError(message);
         return;
       }
 
-      // ✅ Store JWT tokens and user ID for dashboard
+      // ✅ store auth data
       localStorage.setItem("access_token", data.access);
       localStorage.setItem("refresh_token", data.refresh);
-      localStorage.setItem("user_id", data.user_id.toString());
+      localStorage.setItem("user_id", String(data.user_id));
 
-      // Redirect to seller dashboard
       navigate("/seller/dashboard");
     } catch (err) {
       console.error(err);
-      setError("An error occurred. Please try again.");
+      setError("Unable to connect to server");
     }
   };
 
@@ -62,12 +57,13 @@ export default function SellerLogin() {
 
         <form className="login-form" onSubmit={handleSubmit}>
           <label>
-            Email/Username
+            Email / Username
             <input
               type="text"
-              placeholder="Email or Username"
               value={identifier}
-              onChange={(e) => setIdentifier(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setIdentifier(e.target.value)
+              }
               required
             />
           </label>
@@ -76,17 +72,18 @@ export default function SellerLogin() {
             Password
             <input
               type="password"
-              placeholder="••••••••"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
               required
             />
           </label>
 
+          {error && <p className="error">{error}</p>}
+
           <button type="submit">Sign In</button>
         </form>
-
-        {error && <p className="error">{error}</p>}
 
         <div className="login-footer">
           <span>New seller?</span>

@@ -1,6 +1,6 @@
-// Correct way
-import { useState } from "react";        // regular import for runtime functions
-import type { ChangeEvent, FormEvent } from "react";  // type-only import
+import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
+import { API_BASE } from "../../services/api";
 
 interface SellerSignupForm {
   username: string;
@@ -19,17 +19,13 @@ export default function SellerSignup() {
     company_name: "",
   });
 
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -40,27 +36,23 @@ export default function SellerSignup() {
     setSuccess("");
 
     try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/seller/signup/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: formData.username,
-            email: formData.username, // backend expects email
-            password: formData.password,
-            company_name: formData.company_name,
-          }),
-        }
-      );
+      const response = await fetch(`${API_BASE}/api/seller/signup/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.username, // backend expects email
+          password: formData.password,
+          company_name: formData.company_name,
+        }),
+      });
 
       const data = await response.json();
 
       if (!response.ok) {
         const errorData = data as ApiErrorResponse;
-
         const firstError =
           typeof errorData === "string"
             ? errorData
