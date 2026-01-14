@@ -11,8 +11,9 @@ import SellerProfile from "./pages/SellerProfile.js";
 import SellerLogin from "./pages/SellerLogin/SellerLogin.js";
 import SellerSignup from "./pages/SellerSignup/SellerSignup.js";
 import SellerDashboard from "./pages/SellerDashboard/SellerDashboard.js";
-export function ProtectedRoute({ children }) {
-    const token = localStorage.getItem("access_token");
+export function ProtectedRoute(_a) {
+    var children = _a.children;
+    var token = localStorage.getItem("access_token");
     return token ? children : _jsx(Navigate, { to: "/seller/login", replace: true });
 }
 function App() {
