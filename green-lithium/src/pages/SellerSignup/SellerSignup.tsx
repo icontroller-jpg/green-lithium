@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
-import { API_BASE } from "../../services/api";
+import { apiFetch } from "../../services/api";
 
 interface SellerSignupForm {
   username: string;
@@ -36,32 +36,15 @@ export default function SellerSignup() {
     setSuccess("");
 
     try {
-      const response = await fetch(`${API_BASE}/api/seller/signup/`, {
+      await apiFetch("/api/seller/signup/", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           username: formData.username,
-          email: formData.username, // backend expects email
+          email: formData.username,
           password: formData.password,
           company_name: formData.company_name,
         }),
       });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        const errorData = data as ApiErrorResponse;
-        const firstError =
-          typeof errorData === "string"
-            ? errorData
-            : Object.values(errorData)[0];
-
-        throw new Error(
-          Array.isArray(firstError) ? firstError[0] : String(firstError)
-        );
-      }
 
       setSuccess("Account created successfully! You can now sign in.");
       setFormData({
