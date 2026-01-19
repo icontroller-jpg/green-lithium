@@ -1,13 +1,8 @@
-# backend/views.py
-from django.http import JsonResponse
-from django.views.generic import TemplateView
+from django.http import FileResponse
+from pathlib import Path
+from django.conf import settings
 
 
-def frontend_config(request):
-    return JsonResponse({
-        "API_BASE": "https://green-lithium.onrender.com"
-    })
-
-
-class FrontendAppView(TemplateView):
-    template_name = "index.html"
+def frontend_app(request):
+    index_file = Path(settings.BASE_DIR) / "backend" / "static" / "index.html"
+    return FileResponse(open(index_file, "rb"))
