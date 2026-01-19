@@ -10,10 +10,19 @@ from .serializers import (
     ProductSerializer
 )
 from rest_framework.permissions import IsAuthenticated
-
+from django.http import JsonResponse
 from .models import Seller, Product
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.views.generic import TemplateView
 
+class FrontendAppView(TemplateView):
+    template_name = "index.html"
+
+
+def frontend_config(request):
+    return JsonResponse({
+        "API_BASE": "https://green-lithium.onrender.com"
+    })
 
 @api_view(["POST"])
 @permission_classes([AllowAny])

@@ -1,38 +1,15 @@
 // src/services/api.ts
+let API_BASE = "";
 
-export const API_BASE =
-  import.meta.env.VITE_API_BASE ?? "";
+export async function loadConfig() {
+  const res = await fetch("/config/");
+  const cfg = await res.json();
+  API_BASE = cfg.API_BASE;
+}
 
-export async function apiFetch(
-  endpoint: string,
-  options: RequestInit = {}
-) {
-  const token = localStorage.getItem("access_token");
-
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-    ...(options.headers as Record<string, string> | undefined),
-  };
-
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
+export async function apiFetch(path: string, options?: RequestInit) {
+  if (!API_BASE) {
+    throw new Error("API base not loaded");
   }
-
-  const response = await fetch(endpoint.startsWith("http")
-    ? endpoint
-    : `${API_BASE}${endpoint}`, {
-    ...options,
-    headers,
-  });
-
-  let data: any = null;
-  try {
-    data = await response.json();
-  } catch {}
-
-  if (!response.ok) {
-    throw data || { detail: "Request failed" };
-  }
-
-  return data;
+  return fetch(`${API_BASE}${path}`, options);
 }
